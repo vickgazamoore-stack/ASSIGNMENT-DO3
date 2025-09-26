@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./do3.css">
+    <link rel="stylesheet" href="./do3.js">
+</head>
+<body>
+
+     <center>
+        <h1>JAVASCRIPT BASIC ASSIGNMENT DO3</h1>
+    </center>
+
+
+    <form onsubmit="calculate(event)">
+  <label for="destination">Destination:</label>
+  <select id="destination">
+      <option value="">Enter the Destination</option>
+      <option value="aba">Aba</option>
+      <option value="bende">Bende</option>
+      <option value="ohafia">Ohafia</option>
+      <option value="ukwa-east">Ukwa East</option>
+      <option value="ukwa-west">Ukwa West</option>
+      <option value="umuahia">Umuahia</option>
+  </select>
+  <br>
+
+  <label for="weight">Enter the Weight (kg):</label>
+  <input type="number" id="weight">
+  <br>
+
+  <label for="express">Express delivery:</label>
+  <input type="checkbox" id="express">
+  <br>
+
+  <button type="submit">Submit</button>
+
+  <p class="total">Total Amount: <span id="total-amount">₦0.00</span></p>
+</form>
+
+<script src="./do3.js"></script>
+</body>
+</html>
