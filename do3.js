@@ -1,51 +1,70 @@
+// event.prevents stops refresh
 function calculate(event) {
-  event.preventDefault(); // stops form from refreshing
+  event.preventDefault(); 
 
   let weight = Number(document.getElementById("weight").value);
   let destination = document.getElementById("destination").value;
   let expressDelivery = document.getElementById("express").checked;
 
-  // checking the inputs to avoid nagetive number
+  // making sure there is no negetive numeber
   if (isNaN(weight) || weight <= 0) {
     alert("Please enter a valid weight greater than 0.");
     return;
   }
 
-  // making sure the destination is inputed
+  //making sure that destination is inputted
   if (destination === "") {
     alert("Please select a destination.");
     return;
   }
 
-  // starting price
+  // Base cost includes first 5kg weight
   let baseCost = 4000; 
+  let destinationFee = 0;
+  let overweightFee = 0;
+  let expressFee = 0;
 
-  // Add cost based on destination
+  // Destination charges // no extra fee for aba
   if (destination === "aba") {
-   // if the destination is in and around aba no extracharges
+    destinationFee = 0; 
   } else if (destination === "bende") {
-    baseCost += 2000;
+    destinationFee = 2000;
   } else if (destination === "ohafia") {
-    baseCost += 3000;
+    destinationFee = 3000;
   } else if (destination === "ukwa-east") {
-    baseCost += 1000;
+    destinationFee = 1000;
   } else if (destination === "ukwa-west") {
-    baseCost += 1500;
+    destinationFee = 1500;
   } else if (destination === "umuahia") {
-    baseCost += 2500;
+    destinationFee = 2500;
   }
 
-  // Overweight fee: every 1kg above 5kg
+
+  // Overweight: every 1kg above 5
   if (weight > 5) {
     let extraKg = weight - 5;
-    baseCost += extraKg * 50; 
+    overweightFee = extraKg * 50; 
   }
 
-  // Apply extra charges for express delivery
+  // Subtotal before express
+  let subtotal = baseCost + destinationFee + overweightFee;
+  let totalCost = subtotal;
+
+  // Apply express surcharge// mutiply by 1.5 // 
   if (expressDelivery) {
-    baseCost *= 1.5;
+    totalCost = subtotal * 1.5;       
+    expressFee = totalCost - subtotal; 
   }
 
-  // Display result
-  document.getElementById("total-amount").innerText = "₦" + baseCost.toFixed(2);
+  // Breakdown output
+  let breakdownList = `
+    <li>Base Cost (includes 5kg): ₦${baseCost}</li>
+    <li>Destination Fee (${destination}): ₦${destinationFee}</li>
+    <li>Overweight Fee (${weight > 5 ? weight - 5 : 0}kg) x ₦50 per kg: ₦${overweightFee}</li>
+    <li>Express Fee: ₦${expressFee.toFixed(2)}</li>
+  `;
+  document.getElementById("breakdown").innerHTML = breakdownList;
+
+  // Final total shown
+  document.getElementById("total-amount").innerText = "₦" + totalCost.toFixed(2);
 }

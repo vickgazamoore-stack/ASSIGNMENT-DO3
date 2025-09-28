@@ -13,10 +13,9 @@
         <h1>JAVASCRIPT BASIC ASSIGNMENT DO3</h1>
     </center>
 
-
-    <form onsubmit="calculate(event)">
+<form onsubmit="calculate(event)">
   <label for="destination">Destination:</label>
-  <select id="destination">
+  <select id="destination" required>
       <option value="">Enter the Destination</option>
       <option value="aba">Aba</option>
       <option value="bende">Bende</option>
@@ -28,7 +27,7 @@
   <br>
 
   <label for="weight">Enter the Weight (kg):</label>
-  <input type="number" id="weight">
+  <input type="number" id="weight" min="1" required>
   <br>
 
   <label for="express">Express delivery:</label>
@@ -37,8 +36,12 @@
 
   <button type="submit">Submit</button>
 
+  <p class="total">Breakdown:</p>
+  <ul id="breakdown"></ul>
+
   <p class="total">Total Amount: <span id="total-amount">₦0.00</span></p>
 </form>
+
 
 <script src="./do3.js"></script>
 </body>
