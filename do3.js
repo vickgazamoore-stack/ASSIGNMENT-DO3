@@ -6,7 +6,7 @@ function calculate(event) {
   let destination = document.getElementById("destination").value;
   let expressDelivery = document.getElementById("express").checked;
 
-  // making sure there is no negetive numeber
+  // making sure there is no negative number
   if (isNaN(weight) || weight <= 0) {
     alert("Please enter a valid weight greater than 0.");
     return;
@@ -61,8 +61,7 @@ function calculate(event) {
     <li>Base Cost (includes 5kg): ₦${baseCost}</li>
     <li>Destination Fee (${destination}): ₦${destinationFee}</li>
     <li>Overweight Fee (${weight > 5 ? weight - 5 : 0}kg) x ₦50 per kg: ₦${overweightFee}</li>
-    <li>Express Fee: ₦${expressFee.toFixed(2)}</li>
-  `;
+    <li>Express Fee: ₦${expressFee.toFixed(2)}</li>`;
   document.getElementById("breakdown").innerHTML = breakdownList;
 
   // Final total shown
